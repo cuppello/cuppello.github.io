@@ -1,1 +1,3 @@
-This is going to be some kind of read me
+This repo is currently a collection of JSPsych surveys
+
+01 Test surveys
