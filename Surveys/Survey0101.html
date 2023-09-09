@@ -145,7 +145,7 @@
       data: {
         task: 'debriefSTEVE',
 	AnxCor: jsPsych.data.get().filter({condition: 'Anx',correct: true}).count()
-      }
+      },
       on_finish: function(data) {
 	var AnxQs = jsPsych.data.get().filter({condition: 'Anx'});
         var AnxCorCal = AnxQs.filter({correct: true});
