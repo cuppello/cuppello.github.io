@@ -142,19 +142,11 @@
 				<p>Neutral Correct = ${NeuCor} and Neutral RT = ${NeuRT}</p>`;
 
       },
-      data: {
-        task: 'debriefSTEVE',
-	AnxCor: jsPsych.data.get().filter({condition: 'Anx',correct: true}).count()
-      },
       on_finish: function(data) {
-	var AnxQs = jsPsych.data.get().filter({condition: 'Anx'});
-        var AnxCorCal = AnxQs.filter({correct: true});
-		var AnxCor = AnxCorCal.count();
-		var NeuxQs = jsPsych.data.get().filter({condition: 'Neu'});
-        var NeuCorCal = NeuxQs.filter({correct: true});
-		var NeuCor = NeuCorCal.count();
-        var AnxRT = Math.round(AnxQs.select('rt').mean());
-		var NeuRT = Math.round(NeuxQs.select('rt').mean());
+	data.AnxCor = jsPsych.data.get().filter({condition: 'Anx',correct: true}).count();
+	data.AnxRT = jsPsych.data.get().filter({condition: 'Anx'}).select('rt').mean();
+	data.NeuCor = jsPsych.data.get().filter({condition: 'Neu',correct: true}).count();
+	data.NeuRT = Math.round(jsPsych.data.get().filter({condition: 'Neu'}).select('rt').mean());
         window.parent.postMessage(data, "*");
       }
     };
