@@ -144,9 +144,9 @@
       },
       on_finish: function(data) {
 	data.AnxCor = jsPsych.data.get().filter({condition: 'Anx',correct: true}).count();
-	data.AnxRT = jsPsych.data.get().filter({condition: 'Anx'}).select('rt').mean();
+	data.AnxRT = Math.round(jsPsych.data.get().filter({condition: 'Anx'}).select('rt').mean());
 	data.NeuCor = jsPsych.data.get().filter({condition: 'Neu',correct: true}).count();
-	data.NeuRT = jsPsych.data.get().filter({condition: 'Neu'}).select('rt').mean();
+	data.NeuRT = Math.round(jsPsych.data.get().filter({condition: 'Neu'}).select('rt').mean());
         window.parent.postMessage(data, "*");
       }
     };
