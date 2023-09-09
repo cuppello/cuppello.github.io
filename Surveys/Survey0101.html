@@ -148,7 +148,6 @@
 	data.NeuCor = jsPsych.data.get().filter({condition: 'Neu',correct: true}).count();
 	data.NeuRT = Math.round(jsPsych.data.get().filter({condition: 'Neu'}).select('rt').mean());
         window.parent.postMessage(data, "*");
-	qthis.clickNextButton();
       }
     };
     timeline.push(debrief_block);
