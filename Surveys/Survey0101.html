@@ -146,7 +146,7 @@
 	data.AnxCor = jsPsych.data.get().filter({condition: 'Anx',correct: true}).count();
 	data.AnxRT = jsPsych.data.get().filter({condition: 'Anx'}).select('rt').mean();
 	data.NeuCor = jsPsych.data.get().filter({condition: 'Neu',correct: true}).count();
-	data.NeuRT = Math.round(jsPsych.data.get().filter({condition: 'Neu'}).select('rt').mean());
+	data.NeuRT = jsPsych.data.get().filter({condition: 'Neu'}).select('rt').mean();
         window.parent.postMessage(data, "*");
       }
     };
