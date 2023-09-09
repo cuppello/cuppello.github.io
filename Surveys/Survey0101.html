@@ -51,13 +51,6 @@
       },
       data: {
         task: 'fixation'
-      },
-      on_finish: function(data) {
-        console.log("Has it cached or something?");
-        console.log("I am the ", data);
-        console.log(window.parent);
-
-        window.parent.postMessage(data, "*");
       }
     };
 	timeline.push(fixation1);
@@ -148,13 +141,15 @@
         return `<p>Anxiety Correct = ${AnxCor} and Anxiety RT = ${AnxRT}</p>
 				<p>Neutral Correct = ${NeuCor} and Neutral RT = ${NeuRT}</p>`;
 
+      },
+      on_finish: function(data) {
+        window.parent.postMessage(data, "*");
       }
     };
     timeline.push(debrief_block);
 
     window.addEventListener("load", (event) => {
       jsPsych.run(timeline);
-      console.log("page is fully loaded");
     });
 
     /* start the experiment */
