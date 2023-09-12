@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My experiment</title>
+    <script src="https://unpkg.com/jspsych@7.3.3"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.2"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.2"></script>
+	<script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.2"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.2"></script>
+    <link href="https://unpkg.com/jspsych@7.3.3/css/jspsych.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body></body>
+  <script>
+
+    /* initialize jsPsych */
+    var jsPsych = initJsPsych({
+      on_finish: function() {
+        jsPsych.data.displayData();
+      }
+    });
+
+    /* create timeline */
+    var timeline = [];
+    
+    var instructions = {
+      type: jsPsychHtmlButtonResponse,
+      stimulus: `
+		<p>This next task lasts less than 2 minutes and measures your reaction time.</p>
+        <p>First, two random words will appear on the screen for a second.</p>
+		<p>These will then disappear and will be replaced by two buttons, one with a + in and one blank.</p>
+		<p>Click or tap the button with the + as fast as you can.</p>
+		<p><b>Remember to response as fast as you possibly can.</b></p>
+        <p>Press OK when you are ready to begin.</p>
+      `,
+	  choices: ['OK'],
+      post_trial_gap: 1000
+    };
+    timeline.push(instructions);
+
+	var fixation = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: '<div style="font-size:60px;">+</div>',
+      choices: "NO_KEYS",
+      trial_duration: function(){
+        return jsPsych.randomization.sampleWithoutReplacement([250, 500, 750, 1000, 1250, 1500, 1750, 2000], 1)[0];
+      },
+      data: {
+        task: 'fixation'
+      }
+    };
+	timeline.push(fixation);
+	
+var Prompt1 = {
+type: jsPsychHtmlKeyboardResponse,
+stimulus: '<div style="font-size:20px;text-align:center">Outstanding &nbsp &nbsp &nbsp &nbsp &nbsp Magical</div>',
+choices: "NO_KEYS",
+trial_duration: 1000,
+};
+timeline.push(Prompt1);
+
+var Question1 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: '',
+choices: ['<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ', '<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp + &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp '],
+data: {
+condition: 'NA',
+answer: 1
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question1);
+
+timeline.push(fixation);
+
+var Prompt2 = {
+type: jsPsychHtmlKeyboardResponse,
+stimulus: '<div style="font-size:20px;text-align:center">Optimistic &nbsp &nbsp &nbsp &nbsp &nbsp Scared</div>',
+choices: "NO_KEYS",
+trial_duration: 1000,
+};
+timeline.push(Prompt2);
+
+var Question2 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: '',
+choices: ['<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ', '<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp + &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp '],
+data: {
+condition: 'Anx',
+answer: 1
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question2);
+
+timeline.push(fixation);
+
+var Prompt3 = {
+type: jsPsychHtmlKeyboardResponse,
+stimulus: '<div style="font-size:20px;text-align:center">Desperate &nbsp &nbsp &nbsp &nbsp &nbsp Playful</div>',
+choices: "NO_KEYS",
+trial_duration: 1000,
+};
+timeline.push(Prompt3);
+
+var Question3 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: '',
+choices: ['<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ', '<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp + &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp '],
+data: {
+condition: 'Neu',
+answer: 1
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question3);
+
+timeline.push(fixation);
+
+var Prompt4 = {
+type: jsPsychHtmlKeyboardResponse,
+stimulus: '<div style="font-size:20px;text-align:center">Energetic &nbsp &nbsp &nbsp &nbsp &nbsp Charming</div>',
+choices: "NO_KEYS",
+trial_duration: 1000,
+};
+timeline.push(Prompt4);
+
+var Question4 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: '',
+choices: ['<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ', '<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp + &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp '],
+data: {
+condition: 'NA',
+answer: 1
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question4);
+
+timeline.push(fixation);
+
+var Prompt5 = {
+type: jsPsychHtmlKeyboardResponse,
+stimulus: '<div style="font-size:20px;text-align:center">Capable &nbsp &nbsp &nbsp &nbsp &nbsp Weak</div>',
+choices: "NO_KEYS",
+trial_duration: 1000,
+};
+timeline.push(Prompt5);
+
+var Question5 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: '',
+choices: ['<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp + &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ', '<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp '],
+data: {
+condition: 'Neu',
+answer: 0
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question5);
+
+timeline.push(fixation);
+
+var Prompt6 = {
+type: jsPsychHtmlKeyboardResponse,
+stimulus: '<div style="font-size:20px;text-align:center">Helpless &nbsp &nbsp &nbsp &nbsp &nbsp Bold</div>',
+choices: "NO_KEYS",
+trial_duration: 1000,
+};
+timeline.push(Prompt6);
+
+var Question6 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: '',
+choices: ['<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp + &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ', '<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp '],
+data: {
+condition: 'Anx',
+answer: 0
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question6);
+
+timeline.push(fixation);
+
+var Prompt7 = {
+type: jsPsychHtmlKeyboardResponse,
+stimulus: '<div style="font-size:20px;text-align:center">Secure &nbsp &nbsp &nbsp &nbsp &nbsp Worried</div>',
+choices: "NO_KEYS",
+trial_duration: 1000,
+};
+timeline.push(Prompt7);
+
+var Question7 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: '',
+choices: ['<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ', '<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp + &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp '],
+data: {
+condition: 'Anx',
+answer: 1
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question7);
+
+timeline.push(fixation);
+
+var Prompt8 = {
+type: jsPsychHtmlKeyboardResponse,
+stimulus: '<div style="font-size:20px;text-align:center">Wakeful &nbsp &nbsp &nbsp &nbsp &nbsp Happy</div>',
+choices: "NO_KEYS",
+trial_duration: 1000,
+};
+timeline.push(Prompt8);
+
+var Question8 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: '',
+choices: ['<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp + &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ', '<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp '],
+data: {
+condition: 'NA',
+answer: 0
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question8);
+
+timeline.push(fixation);
+
+var Prompt9 = {
+type: jsPsychHtmlKeyboardResponse,
+stimulus: '<div style="font-size:20px;text-align:center">Terrified &nbsp &nbsp &nbsp &nbsp &nbsp Heroic</div>',
+choices: "NO_KEYS",
+trial_duration: 1000,
+};
+timeline.push(Prompt9);
+
+var Question9 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: '',
+choices: ['<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ', '<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp + &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp '],
+data: {
+condition: 'Neu',
+answer: 1
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question9);
+
+timeline.push(fixation);
+
+var Prompt10 = {
+type: jsPsychHtmlKeyboardResponse,
+stimulus: '<div style="font-size:20px;text-align:center">Ashamed &nbsp &nbsp &nbsp &nbsp &nbsp Friendly</div>',
+choices: "NO_KEYS",
+trial_duration: 1000,
+};
+timeline.push(Prompt10);
+
+var Question10 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: '',
+choices: ['<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp + &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ', '<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp '],
+data: {
+condition: 'Anx',
+answer: 0
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question10);
+
+timeline.push(fixation);
+
+var Prompt11 = {
+type: jsPsychHtmlKeyboardResponse,
+stimulus: '<div style="font-size:20px;text-align:center">Welcoming &nbsp &nbsp &nbsp &nbsp &nbsp Stupid</div>',
+choices: "NO_KEYS",
+trial_duration: 1000,
+};
+timeline.push(Prompt11);
+
+var Question11 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: '',
+choices: ['<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp + &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ', '<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp '],
+data: {
+condition: 'Neu',
+answer: 0
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question11);
+
+timeline.push(fixation);
+
+var Prompt12 = {
+type: jsPsychHtmlKeyboardResponse,
+stimulus: '<div style="font-size:20px;text-align:center">Present &nbsp &nbsp &nbsp &nbsp &nbsp Special</div>',
+choices: "NO_KEYS",
+trial_duration: 1000,
+};
+timeline.push(Prompt12);
+
+var Question12 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: '',
+choices: ['<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp + &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ', '<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp '],
+data: {
+condition: 'NA',
+answer: 0
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question12);
+
+timeline.push(fixation);
+
+var Prompt13 = {
+type: jsPsychHtmlKeyboardResponse,
+stimulus: '<div style="font-size:20px;text-align:center">Panicky &nbsp &nbsp &nbsp &nbsp &nbsp Gratified</div>',
+choices: "NO_KEYS",
+trial_duration: 1000,
+};
+timeline.push(Prompt13);
+
+var Question13 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: '',
+choices: ['<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ', '<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp + &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp '],
+data: {
+condition: 'Neu',
+answer: 1
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question13);
+
+timeline.push(fixation);
+
+var Prompt14 = {
+type: jsPsychHtmlKeyboardResponse,
+stimulus: '<div style="font-size:20px;text-align:center">Pleasant &nbsp &nbsp &nbsp &nbsp &nbsp Hilarious</div>',
+choices: "NO_KEYS",
+trial_duration: 1000,
+};
+timeline.push(Prompt14);
+
+var Question14 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: '',
+choices: ['<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp + &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ', '<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp '],
+data: {
+condition: 'NA',
+answer: 0
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question14);
+
+timeline.push(fixation);
+
+var Prompt15 = {
+type: jsPsychHtmlKeyboardResponse,
+stimulus: '<div style="font-size:20px;text-align:center">Nervous &nbsp &nbsp &nbsp &nbsp &nbsp Curious</div>',
+choices: "NO_KEYS",
+trial_duration: 1000,
+};
+timeline.push(Prompt15);
+
+var Question15 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: '',
+choices: ['<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp + &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ', '<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp '],
+data: {
+condition: 'Anx',
+answer: 0
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question15);
+
+timeline.push(fixation);
+
+var Prompt16 = {
+type: jsPsychHtmlKeyboardResponse,
+stimulus: '<div style="font-size:20px;text-align:center">Relaxing &nbsp &nbsp &nbsp &nbsp &nbsp Incompetent</div>',
+choices: "NO_KEYS",
+trial_duration: 1000,
+};
+timeline.push(Prompt16);
+
+var Question16 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: '',
+choices: ['<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp + &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ', '<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp '],
+data: {
+condition: 'Neu',
+answer: 0
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question16);
+
+timeline.push(fixation);
+
+var Prompt17 = {
+type: jsPsychHtmlKeyboardResponse,
+stimulus: '<div style="font-size:20px;text-align:center">Inept &nbsp &nbsp &nbsp &nbsp &nbsp Calm</div>',
+choices: "NO_KEYS",
+trial_duration: 1000,
+};
+timeline.push(Prompt17);
+
+var Question17 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: '',
+choices: ['<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp + &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ', '<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp '],
+data: {
+condition: 'Anx',
+answer: 0
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question17);
+
+timeline.push(fixation);
+
+var Prompt18 = {
+type: jsPsychHtmlKeyboardResponse,
+stimulus: '<div style="font-size:20px;text-align:center">Peaceful &nbsp &nbsp &nbsp &nbsp &nbsp Witty</div>',
+choices: "NO_KEYS",
+trial_duration: 1000,
+};
+timeline.push(Prompt18);
+
+var Question18 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: '',
+choices: ['<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp + &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ', '<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp '],
+data: {
+condition: 'NA',
+answer: 0
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question18);
+
+timeline.push(fixation);
+
+var Prompt19 = {
+type: jsPsychHtmlKeyboardResponse,
+stimulus: '<div style="font-size:20px;text-align:center">Carefree &nbsp &nbsp &nbsp &nbsp &nbsp Anxious</div>',
+choices: "NO_KEYS",
+trial_duration: 1000,
+};
+timeline.push(Prompt19);
+
+var Question19 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: '',
+choices: ['<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp + &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ', '<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp '],
+data: {
+condition: 'Neu',
+answer: 0
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question19);
+
+timeline.push(fixation);
+
+var Prompt20 = {
+type: jsPsychHtmlKeyboardResponse,
+stimulus: '<div style="font-size:20px;text-align:center">Reassured &nbsp &nbsp &nbsp &nbsp &nbsp Threatened</div>',
+choices: "NO_KEYS",
+trial_duration: 1000,
+};
+timeline.push(Prompt20);
+
+var Question20 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: '',
+choices: ['<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ', '<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp + &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp '],
+data: {
+condition: 'Anx',
+answer: 1
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question20);
+
+timeline.push(fixation);
+
+var Prompt21 = {
+type: jsPsychHtmlKeyboardResponse,
+stimulus: '<div style="font-size:20px;text-align:center">Interesting &nbsp &nbsp &nbsp &nbsp &nbsp Inadequate</div>',
+choices: "NO_KEYS",
+trial_duration: 1000,
+};
+timeline.push(Prompt21);
+
+var Question21 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: '',
+choices: ['<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ', '<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp + &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp '],
+data: {
+condition: 'Anx',
+answer: 1
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question21);
+
+timeline.push(fixation);
+
+var Prompt22 = {
+type: jsPsychHtmlKeyboardResponse,
+stimulus: '<div style="font-size:20px;text-align:center">Failure &nbsp &nbsp &nbsp &nbsp &nbsp Assured</div>',
+choices: "NO_KEYS",
+trial_duration: 1000,
+};
+timeline.push(Prompt22);
+
+var Question22 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: '',
+choices: ['<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ', '<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp + &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp '],
+data: {
+condition: 'Neu',
+answer: 1
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question22);
+
+timeline.push(fixation);
+
+var Prompt23 = {
+type: jsPsychHtmlKeyboardResponse,
+stimulus: '<div style="font-size:20px;text-align:center">Cautious &nbsp &nbsp &nbsp &nbsp &nbsp Sleepy</div>',
+choices: "NO_KEYS",
+trial_duration: 1000,
+};
+timeline.push(Prompt23);
+
+var Question23 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: '',
+choices: ['<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp + &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ', '<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp '],
+data: {
+condition: 'Anx',
+answer: 0
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question23);
+
+timeline.push(fixation);
+
+var Prompt24 = {
+type: jsPsychHtmlKeyboardResponse,
+stimulus: '<div style="font-size:20px;text-align:center">Cultured &nbsp &nbsp &nbsp &nbsp &nbsp Excellent</div>',
+choices: "NO_KEYS",
+trial_duration: 1000,
+};
+timeline.push(Prompt24);
+
+var Question24 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: '',
+choices: ['<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ', '<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp + &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp '],
+data: {
+condition: 'NA',
+answer: 1
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question24);
+
+timeline.push(fixation);
+
+var Prompt25 = {
+type: jsPsychHtmlKeyboardResponse,
+stimulus: '<div style="font-size:20px;text-align:center">Aspiring &nbsp &nbsp &nbsp &nbsp &nbsp Super</div>',
+choices: "NO_KEYS",
+trial_duration: 1000,
+};
+timeline.push(Prompt25);
+
+var Question25 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: '',
+choices: ['<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ', '<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp + &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp '],
+data: {
+condition: 'NA',
+answer: 1
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question25);
+
+timeline.push(fixation);
+
+var Prompt26 = {
+type: jsPsychHtmlKeyboardResponse,
+stimulus: '<div style="font-size:20px;text-align:center">Joyful &nbsp &nbsp &nbsp &nbsp &nbsp Timid</div>',
+choices: "NO_KEYS",
+trial_duration: 1000,
+};
+timeline.push(Prompt26);
+
+var Question26 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: '',
+choices: ['<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp + &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ', '<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp '],
+data: {
+condition: 'Neu',
+answer: 0
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question26);
+
+timeline.push(fixation);
+
+var Prompt27 = {
+type: jsPsychHtmlKeyboardResponse,
+stimulus: '<div style="font-size:20px;text-align:center">Foolish &nbsp &nbsp &nbsp &nbsp &nbsp Victorious</div>',
+choices: "NO_KEYS",
+trial_duration: 1000,
+};
+timeline.push(Prompt27);
+
+var Question27 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: '',
+choices: ['<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ', '<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp + &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp '],
+data: {
+condition: 'Neu',
+answer: 1
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question27);
+
+timeline.push(fixation);
+
+var Prompt28 = {
+type: jsPsychHtmlKeyboardResponse,
+stimulus: '<div style="font-size:20px;text-align:center">Satisfied &nbsp &nbsp &nbsp &nbsp &nbsp Worthless</div>',
+choices: "NO_KEYS",
+trial_duration: 1000,
+};
+timeline.push(Prompt28);
+
+var Question28 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: '',
+choices: ['<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ', '<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp + &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp '],
+data: {
+condition: 'Anx',
+answer: 1
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question28);
+
+timeline.push(fixation);
+
+var Prompt29 = {
+type: jsPsychHtmlKeyboardResponse,
+stimulus: '<div style="font-size:20px;text-align:center">Observant &nbsp &nbsp &nbsp &nbsp &nbsp Elegant</div>',
+choices: "NO_KEYS",
+trial_duration: 1000,
+};
+timeline.push(Prompt29);
+
+var Question29 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: '',
+choices: ['<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp + &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ', '<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp '],
+data: {
+condition: 'NA',
+answer: 0
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question29);
+
+timeline.push(fixation);
+
+var Prompt30 = {
+type: jsPsychHtmlKeyboardResponse,
+stimulus: '<div style="font-size:20px;text-align:center">Fabulous &nbsp &nbsp &nbsp &nbsp &nbsp Nostalgic</div>',
+choices: "NO_KEYS",
+trial_duration: 1000,
+};
+timeline.push(Prompt30);
+
+var Question30 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: '',
+choices: ['<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ', '<div style="font-size:20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp + &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp '],
+data: {
+condition: 'NA',
+answer: 1
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question30);
+
+var fixationEnd = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: '<div style="font-size:60px;">+</div>',
+      choices: "NO_KEYS",
+      trial_duration: 250,
+      data: {
+        task: 'fixationEnd'
+      },
+	  on_finish: function(data) {
+		data.AnxCor = jsPsych.data.get().filter({condition: 'Anx',correct: true}).count();
+		data.AnxRT = Math.round(jsPsych.data.get().filter({condition: 'Anx'}).select('rt').mean());
+		data.NeuCor = jsPsych.data.get().filter({condition: 'Neu',correct: true}).count();
+		data.NeuRT = Math.round(jsPsych.data.get().filter({condition: 'Neu'}).select('rt').mean());
+        window.parent.postMessage(data, "*");
+      }
+    };
+	timeline.push(fixationEnd);
+
+	
+	var debrief_block = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: `
+		<p>Thank you for completing this section.</p>
+        <p>Your responses have been recorded.</p>
+		<p>Please click 'Next' in the bottom right to move to the next section.</p>
+      `,
+	  choices: "NO_KEYS",
+    };
+    timeline.push(debrief_block);
+
+    /* start the experiment */
+    window.addEventListener("load", (event) => {
+      jsPsych.run(timeline);		/* For JSPsych, this runs the timeline. The wraparound means Qualtrics can interact with it */
+    });
+
+  </script>
+</html>
