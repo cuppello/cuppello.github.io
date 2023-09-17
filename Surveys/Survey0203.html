@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My experiment</title>
+    <script src="https://unpkg.com/jspsych@7.3.3"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.2"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.2"></script>
+	<script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.2"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.2"></script>
+    <link href="https://unpkg.com/jspsych@7.3.3/css/jspsych.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body></body>
+  <script>
+
+    /* initialize jsPsych */
+    var jsPsych = initJsPsych({
+      on_finish: function() {
+        jsPsych.data.displayData();
+      }
+    });
+
+    /* create timeline */
+    var timeline = [];
+    
+    var instructions = {
+      type: jsPsychHtmlButtonResponse,
+      stimulus: `
+		<p>Press OK when you are ready to begin.</p>
+      `,
+	  choices: ['OK'],
+      post_trial_gap: 1000
+    };
+    timeline.push(instructions);
+
+	var fixation = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: '<div style="font-size:60px;">+</div>',
+      choices: "NO_KEYS",
+      trial_duration: function(){
+        return jsPsych.randomization.sampleWithoutReplacement([250, 500, 750, 1000, 1250, 1500, 1750, 2000], 1)[0];
+      },
+      data: {
+        task: 'fixation'
+      }
+    };
+	timeline.push(fixation);
+
+timeline.push(fixation);
+ var Question1 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: "",
+choices: ['<div style="font-size:20px;"> 7 ', '<div style="font-size:20px;"> 12 ', '<div style="font-size:20px;"> 5 '],
+data: {
+condition: 'Trial',
+answer: 1
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question1);
+
+timeline.push(fixation);
+ var Question2 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: "",
+choices: ['<div style="font-size:20px;"> 10 ', '<div style="font-size:20px;"> 2 ', '<div style="font-size:20px;"> 5 '],
+data: {
+condition: 'Trial',
+answer: 0
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question2);
+
+timeline.push(fixation);
+ var Question3 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: "",
+choices: ['<div style="font-size:20px;"> 6 ', '<div style="font-size:20px;"> 21 ', '<div style="font-size:20px;"> 2 '],
+data: {
+condition: 'Trial',
+answer: 1
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question3);
+
+timeline.push(fixation);
+ var Question4 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: "",
+choices: ['<div style="font-size:20px;"> 8 ', '<div style="font-size:20px;"> 24 ', '<div style="font-size:20px;"> 33 '],
+data: {
+condition: 'Trial',
+answer: 0
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question4);
+
+timeline.push(fixation);
+ var Question5 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: "",
+choices: ['<div style="font-size:20px;"> 1 ', '<div style="font-size:20px;"> 27 ', '<div style="font-size:20px;"> 25 '],
+data: {
+condition: 'Trial',
+answer: 0
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question5);
+
+timeline.push(fixation);
+ var Question6 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: "",
+choices: ['<div style="font-size:20px;"> 32 ', '<div style="font-size:20px;"> 9 ', '<div style="font-size:20px;"> 5 '],
+data: {
+condition: 'Trial',
+answer: 0
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question6);
+
+timeline.push(fixation);
+ var Question7 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: "",
+choices: ['<div style="font-size:20px;"> 17 ', '<div style="font-size:20px;"> 26 ', '<div style="font-size:20px;"> 2 '],
+data: {
+condition: 'Trial',
+answer: 2
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question7);
+
+timeline.push(fixation);
+ var Question8 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: "",
+choices: ['<div style="font-size:20px;"> 17 ', '<div style="font-size:20px;"> 38 ', '<div style="font-size:20px;"> 24 '],
+data: {
+condition: 'Trial',
+answer: 1
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question8);
+
+timeline.push(fixation);
+ var Question9 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: "",
+choices: ['<div style="font-size:20px;"> 7 ', '<div style="font-size:20px;"> 36 ', '<div style="font-size:20px;"> 39 '],
+data: {
+condition: 'Trial',
+answer: 0
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question9);
+
+timeline.push(fixation);
+ var Question10 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: "",
+choices: ['<div style="font-size:20px;"> 37 ', '<div style="font-size:20px;"> 32 ', '<div style="font-size:20px;"> 16 '],
+data: {
+condition: 'Trial',
+answer: 2
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question10);
+
+timeline.push(fixation);
+ var Question11 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: "",
+choices: ['<div style="font-size:20px;"> 24 ', '<div style="font-size:20px;"> 13 ', '<div style="font-size:20px;"> 38 '],
+data: {
+condition: 'Trial',
+answer: 2
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question11);
+
+timeline.push(fixation);
+ var Question12 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: "",
+choices: ['<div style="font-size:20px;"> 15 ', '<div style="font-size:20px;"> 26 ', '<div style="font-size:20px;"> 27 '],
+data: {
+condition: 'Trial',
+answer: 0
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question12);
+
+timeline.push(fixation);
+ var Question13 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: "",
+choices: ['<div style="font-size:20px;"> 2 ', '<div style="font-size:20px;"> 6 ', '<div style="font-size:20px;"> 30 '],
+data: {
+condition: 'Trial',
+answer: 2
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question13);
+
+timeline.push(fixation);
+ var Question14 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: "",
+choices: ['<div style="font-size:20px;"> 13 ', '<div style="font-size:20px;"> 27 ', '<div style="font-size:20px;"> 7 '],
+data: {
+condition: 'Trial',
+answer: 1
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question14);
+
+timeline.push(fixation);
+ var Question15 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: "",
+choices: ['<div style="font-size:20px;"> 16 ', '<div style="font-size:20px;"> 17 ', '<div style="font-size:20px;"> 25 '],
+data: {
+condition: 'Trial',
+answer: 2
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question15);
+
+timeline.push(fixation);
+ var Question16 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: "",
+choices: ['<div style="font-size:20px;"> 37 ', '<div style="font-size:20px;"> 30 ', '<div style="font-size:20px;"> 10 '],
+data: {
+condition: 'Trial',
+answer: 2
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question16);
+
+timeline.push(fixation);
+ var Question17 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: "",
+choices: ['<div style="font-size:20px;"> 18 ', '<div style="font-size:20px;"> 1 ', '<div style="font-size:20px;"> 39 '],
+data: {
+condition: 'Trial',
+answer: 2
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question17);
+
+timeline.push(fixation);
+ var Question18 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: "",
+choices: ['<div style="font-size:20px;"> 13 ', '<div style="font-size:20px;"> 20 ', '<div style="font-size:20px;"> 1 '],
+data: {
+condition: 'Trial',
+answer: 2
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question18);
+
+timeline.push(fixation);
+ var Question19 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: "",
+choices: ['<div style="font-size:20px;"> 12 ', '<div style="font-size:20px;"> 35 ', '<div style="font-size:20px;"> 37 '],
+data: {
+condition: 'Trial',
+answer: 0
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question19);
+
+timeline.push(fixation);
+ var Question20 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: "",
+choices: ['<div style="font-size:20px;"> 34 ', '<div style="font-size:20px;"> 12 ', '<div style="font-size:20px;"> 18 '],
+data: {
+condition: 'Trial',
+answer: 0
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question20);
+
+timeline.push(fixation);
+ var Question21 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: "",
+choices: ['<div style="font-size:20px;"> 11 ', '<div style="font-size:20px;"> 16 ', '<div style="font-size:20px;"> 31 '],
+data: {
+condition: 'Trial',
+answer: 2
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question21);
+
+timeline.push(fixation);
+ var Question22 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: "",
+choices: ['<div style="font-size:20px;"> 1 ', '<div style="font-size:20px;"> 20 ', '<div style="font-size:20px;"> 38 '],
+data: {
+condition: 'Trial',
+answer: 0
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question22);
+
+timeline.push(fixation);
+ var Question23 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: "",
+choices: ['<div style="font-size:20px;"> 30 ', '<div style="font-size:20px;"> 20 ', '<div style="font-size:20px;"> 38 '],
+data: {
+condition: 'Trial',
+answer: 1
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question23);
+
+timeline.push(fixation);
+ var Question24 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: "",
+choices: ['<div style="font-size:20px;"> 15 ', '<div style="font-size:20px;"> 7 ', '<div style="font-size:20px;"> 17 '],
+data: {
+condition: 'Trial',
+answer: 1
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question24);
+
+timeline.push(fixation);
+ var Question25 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: "",
+choices: ['<div style="font-size:20px;"> 24 ', '<div style="font-size:20px;"> 11 ', '<div style="font-size:20px;"> 36 '],
+data: {
+condition: 'Trial',
+answer: 1
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question25);
+
+timeline.push(fixation);
+ var Question26 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: "",
+choices: ['<div style="font-size:20px;"> 33 ', '<div style="font-size:20px;"> 19 ', '<div style="font-size:20px;"> 15 '],
+data: {
+condition: 'Trial',
+answer: 0
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question26);
+
+timeline.push(fixation);
+ var Question27 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: "",
+choices: ['<div style="font-size:20px;"> 2 ', '<div style="font-size:20px;"> 18 ', '<div style="font-size:20px;"> 11 '],
+data: {
+condition: 'Trial',
+answer: 0
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question27);
+
+timeline.push(fixation);
+ var Question28 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: "",
+choices: ['<div style="font-size:20px;"> 20 ', '<div style="font-size:20px;"> 25 ', '<div style="font-size:20px;"> 36 '],
+data: {
+condition: 'Trial',
+answer: 2
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question28);
+
+timeline.push(fixation);
+ var Question29 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: "",
+choices: ['<div style="font-size:20px;"> 31 ', '<div style="font-size:20px;"> 22 ', '<div style="font-size:20px;"> 1 '],
+data: {
+condition: 'Trial',
+answer: 2
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question29);
+
+timeline.push(fixation);
+ var Question30 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: "",
+choices: ['<div style="font-size:20px;"> 31 ', '<div style="font-size:20px;"> 24 ', '<div style="font-size:20px;"> 15 '],
+data: {
+condition: 'Trial',
+answer: 2
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question30);
+
+
+var fixationEnd = {
+      type: jsPsychHtmlButtonResponse,
+      stimulus: function() {
+		  
+		var Correct = jsPsych.data.get().filter({condition: 'Trial',correct: true}).count();
+		var Incorrect = jsPsych.data.get().filter({condition: 'Trial',correct: false}).count();
+		var RT = Math.round(jsPsych.data.get().filter({condition: 'Trial'}).select('rt').mean());
+
+
+        return `<p>Correct = ${Correct} and Incorrect = ${Incorrect}</p>
+				<p>RT = ${RT}</p>`;
+
+      },
+      choices: ['OK'],
+      data: {
+        task: 'fixationEnd'
+      },
+	  on_finish: function(data) {
+		data.Correct = jsPsych.data.get().filter({condition: 'Trial',correct: true}).count();
+		data.Incorrect = jsPsych.data.get().filter({condition: 'Trial',correct: false}).count();
+		data.RT = Math.round(jsPsych.data.get().filter({condition: 'Trial'}).select('rt').mean());
+        window.parent.postMessage(data, "*");
+      }
+    };
+	timeline.push(fixationEnd);
+
+	
+	var debrief_block = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: `
+		<p>Thank you for completing this section.</p>
+        <p>Your responses have been recorded.</p>
+		<p>Please click 'Next' in the bottom right to move to the next section.</p>
+      `,
+	  choices: "NO_KEYS",
+    };
+    timeline.push(debrief_block);
+
+    /* start the experiment */
+    window.addEventListener("load", (event) => {
+      jsPsych.run(timeline);		/* For JSPsych, this runs the timeline. The wraparound means Qualtrics can interact with it */
+    });
+
+  </script>
+</html>
