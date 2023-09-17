@@ -617,19 +617,10 @@ timeline.push(Question30);
 
 
 var fixationEnd = {
-      type: jsPsychHtmlButtonResponse,
-      stimulus: function() {
-		  
-		var Correct = jsPsych.data.get().filter({condition: 'Trial',correct: true}).count();
-		var Incorrect = jsPsych.data.get().filter({condition: 'Trial',correct: false}).count();
-		var RT = Math.round(jsPsych.data.get().filter({condition: 'Trial'}).select('rt').mean());
-
-
-        return `<p>Correct = ${Correct} and Incorrect = ${Incorrect}</p>
-				<p>RT = ${RT}</p>`;
-
-      },
-      choices: ['OK'],
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: '<div style="font-size:60px;">+</div>',
+      choices: "NO_KEYS",
+      trial_duration: 250,
       data: {
         task: 'fixationEnd'
       },
