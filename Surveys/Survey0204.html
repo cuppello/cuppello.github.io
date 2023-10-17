@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My experiment</title>
+    <script src="https://unpkg.com/jspsych@7.3.3"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.2"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.2"></script>
+	<script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.2"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.2"></script>
+    <link href="https://unpkg.com/jspsych@7.3.3/css/jspsych.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body></body>
+  <script>
+
+    /* initialize jsPsych */
+    var jsPsych = initJsPsych({
+      on_finish: function() {
+        jsPsych.data.displayData();
+      }
+    });
+
+    /* create timeline */
+    var timeline = [];
+    
+    var instructions = {
+      type: jsPsychHtmlButtonResponse,
+      stimulus: `
+		<p>Press OK when you are ready to begin.</p>
+      `,
+	  choices: ['OK'],
+      post_trial_gap: 1000
+    };
+    timeline.push(instructions);
+
+	var fixation = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: '<div style="font-size:60px;">+</div>',
+      choices: "NO_KEYS",
+      trial_duration: function(){
+        return jsPsych.randomization.sampleWithoutReplacement([250, 500, 750, 1000, 1250, 1500, 1750, 2000], 1)[0];
+      },
+      data: {
+        task: 'fixation'
+      }
+    };
+	timeline.push(fixation);
+
+timeline.push(fixation);
+ var Question1 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: "",
+choices: ['<div style="font-size:20px;"> 14 ', '<div style="font-size:20px;"> 5 ', '<div style="font-size:20px;"> 6 '],
+data: {
+condition: 'Trial',
+answer: 0
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question1);
+
+timeline.push(fixation);
+ var Question2 = {
+type: jsPsychHtmlButtonResponse,
+stimulus: "",
+choices: ['<div style="font-size:20px;"> 13 ', '<div style="font-size:20px;"> 2 ', '<div style="font-size:20px;"> 20 '],
+data: {
+condition: 'Trial',
+answer: 1
+},
+on_finish: function(data){
+if(data.response == data.answer){
+data.correct = true;
+} else {
+data.correct = false;
+}
+}
+};
+timeline.push(Question2);
+
+var fixationEnd = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: '<div style="font-size:60px;">+</div>',
+      choices: "NO_KEYS",
+      trial_duration: 250,
+      data: {
+        task: 'fixationEnd'
+      },
+	  on_finish: function(data) {
+		data.TESTCorrect = jsPsych.data.get().filter({condition: 'Trial',correct: true}).count();
+		data.TESTIncorrect = jsPsych.data.get().filter({condition: 'Trial',correct: false}).count();
+		data.TESTRT = Math.round(jsPsych.data.get().filter({condition: 'Trial'}).select('rt').mean());
+        window.parent.postMessage(data, "*");
+      }
+    };
+	timeline.push(fixationEnd);
+
+	
+	var debrief_block = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: `
+		<p>Thank you for completing this section.</p>
+        <p>Your responses have been recorded.</p>
+		<p>Please click 'Next' in the bottom right to move to the next section.</p>
+      `,
+	  choices: "NO_KEYS",
+    };
+    timeline.push(debrief_block);
+
+    /* start the experiment */
+    window.addEventListener("load", (event) => {
+      jsPsych.run(timeline);		/* For JSPsych, this runs the timeline. The wraparound means Qualtrics can interact with it */
+    });
+
+  </script>
+</html>
