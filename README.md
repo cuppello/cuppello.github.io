@@ -6,4 +6,5 @@ This repo is currently a collection of JSPsych surveys
   * 0201 Dot Probe
   * 0202 N-back
   * 0203 Number Speed and Accuracy (GIA)
-  * 0204 Number Speed and Accuracy (GIA) Practice Items
+  * 0204 Number Speed and Accuracy (GIA) Practice Items (2)
+  * 0205 Number Speed and Accuracy (GIA) Extended Practice Items (5)
