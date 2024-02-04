@@ -1,4 +1,4 @@
-This repo is currently a collection of JSPsych surveys
+This repo is currently a collection of JSPsych surveys, and a directory of jsPsych libraries
 
 - 01 Test surveys
   * 0101 Dot Probe Test
